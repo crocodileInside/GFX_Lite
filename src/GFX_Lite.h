@@ -25,7 +25,8 @@ class GFX : public Print
 		// Always keep support for the BASIC AdaFruit_GFX color 565 uint16_t functions available.
     virtual void drawPixel(int16_t x, int16_t y, uint16_t color) = 0;		
     virtual void fillScreen(uint16_t color);
-	  virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);	
+	virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+	virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t r, uint8_t g, uint8_t b);
 
 	  // + FastLED colour implementations as well.
     virtual void drawPixel(int16_t x, int16_t y, CRGB color) = 0;	

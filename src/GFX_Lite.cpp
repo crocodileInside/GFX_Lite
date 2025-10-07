@@ -176,6 +176,31 @@ void GFX::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
   }
 }
 
+void GFX::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t r, uint8_t g, uint8_t b)
+{
+  uint16_t color = ((r & 0x1F) << 11) | ((g & 0x3F) << 5) | (b & 0x1F);
+  
+   // Bounds checking and clipping
+  if (x >= _width || y >= _height) return;
+  if (x + w < 0 || y + h < 0) return;
+  
+  // Clip to screen bounds
+  if (x < 0) { w += x; x = 0; }
+  if (y < 0) { h += y; y = 0; }
+  if (x + w > _width) { w = _width - x; }
+  if (y + h > _height) { h = _height - y; }
+  
+  if (w <= 0 || h <= 0) return;
+  
+  for (int16_t i = x; i < x + w; i++)
+  {
+    for (int16_t j = y; j < y + h; j++)
+    {
+      drawPixel(i, j, color);
+    }
+  }
+}
+
 /**************************************************************************/
 /*!
    @brief    Fill the screen completely with one color.
